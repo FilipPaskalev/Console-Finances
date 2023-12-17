@@ -87,7 +87,7 @@ var dataset = [
   ["Feb-2017", 671099],
 ];
 
-var totalMonths = 0;
+var totalMonths = dataset.length;
 
 var totalProfit;
 
@@ -99,20 +99,12 @@ var greatestIncrease;
 
 var greatestDecrease;
 
-function getTotalMonthsFromPeriod(inputDataset) {
-  let months = null;
-  for (let i = 0; i < inputDataset.length; i++) {
-    months = months + 1;
-  }
-  return months;
-}
-
+// Zero is neutral number, but in the
+// technical specification is not required
+// to check for neutral numbers, that's why
+// is implemented like a positive number
+// with the first check statement.
 function isItPositiveNumber(inputNumber) {
-  // Zero is neutral number, but in the
-  // technical specification is not required
-  // to check for neutral numbers, that's why
-  // is implemented like a positive number
-  // with the first check statement.
   if (Math.sign(inputNumber) >= 0) return true;
   if (Math.sign(inputNumber) < 0) return false;
 }
@@ -134,3 +126,7 @@ function getTotalLossesFromThePeriod(inputDataset) {
   }
   return profit;
 }
+
+console.log("🚀 ~ file: index.js:141 ~ totalProfit:", totalProfit);
+totalLosses = getTotalLossesFromThePeriod(dataset);
+console.log("🚀 ~ file: index.js:143 ~ totalLosses:", totalLosses);
