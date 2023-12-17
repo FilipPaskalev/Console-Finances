@@ -110,11 +110,24 @@ function getTotalMonthsFromPeriod(dataset) {
 totalMonths = getTotalMonthsFromPeriod(dataset);
 console.log("🚀 ~ file: index.js:111 ~ totalMonths:", totalMonths);
 
-function getTotalProfitFromThePeriod(dataset) {
+function getTotalProfitFromThePeriod(data) {
   let profit = null;
-  for (let i = 0; i < dataset.length; i++) {
-    let data = dataset[i];
-    for (let j = 0; j < data.length; j++) {}
+  for (let i = 0; i < data.length; i++) {
+    if (isItProfit(data[i][1])) profit = profit + data[i][1];
   }
   return profit;
 }
+
+function isItProfit(amount) {
+  // Zero is neutral number, but in the
+  // technical specification is not required
+  // to check for neutral numbers, that's why
+  // is implemented like a positive number
+  // with the first check statement.
+  if (Math.sign(amount) >= 0) return true;
+  if (Math.sign(amount) < 0) return false;
+}
+
+// Test the correct behavior of the function
+// var test = isItProfit(dataset[8][1]);
+// console.log("🚀 ~ file: index.js:128 ~ test:", test);
