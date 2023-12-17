@@ -88,18 +88,20 @@ var dataset = [
 ];
 
 var totalMonths = dataset.length;
+
 var total = 0;
+
 var averageChange;
+var averageMonthlyChange = [];
+
 var greatestIncrease;
 var greatestDecrease;
-
-var averageMonthlyChange = [];
 
 for (let i = 0; i < totalMonths; i++) {
   let monthData = dataset[i];
   total = total + monthData[1];
   let avgMonthlyChange = (total + monthData[1]) / (i + 1);
-  averageMonthlyChange.push([monthData[0], avgMonthlyChange]);
+  averageMonthlyChange.push([monthData[0], Math.round(avgMonthlyChange)]);
   console.log(
     "🚀 ~ file: index.js:104 ~ averageMonthlyChange:",
     averageMonthlyChange
