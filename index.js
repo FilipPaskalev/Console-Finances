@@ -1,4 +1,4 @@
-var dataSet = [
+var dataset = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -98,3 +98,10 @@ var averageChange;
 var greatestIncrease;
 
 var greatestDecrease;
+
+function getTotalMonthsFromPeriod(dataset, startPeriod, endPeriod) {
+  let totalMonthsForThePeriod;
+  return totalMonthsForThePeriod;
+}
+
+totalMonths = getTotalMonthsFromPeriod();
