@@ -1,4 +1,4 @@
-var dataset = [
+var data = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -87,33 +87,35 @@ var dataset = [
   ["Feb-2017", 671099],
 ];
 
-var totalMonths = dataset.length;
+var totalMonths = data.length;
 
 var total = 0;
 
-var averageChange;
+var averageChange = 0;
 var averageMonthlyChange = [];
 
-var greatestIncrease;
-var greatestDecrease;
+var greatestIncrease = [data[0][0], data[0][1]];
+var greatestDecrease = [data[0][0], data[0][1]];
 
 for (let i = 0; i < totalMonths; i++) {
-  let monthData = dataset[i];
+  let monthData = data[i];
+
   total = total + monthData[1];
+
   let avgMonthlyChange = (total + monthData[1]) / (i + 1);
   averageMonthlyChange.push([monthData[0], Math.round(avgMonthlyChange)]);
-  console.log(
-    "🚀 ~ file: index.js:104 ~ averageMonthlyChange:",
-    averageMonthlyChange
-  );
+  averageChange = averageChange + averageMonthlyChange[i][1];
+
+  if (monthData[1] > greatestIncrease[1]) greatestIncrease = monthData;
+  if (monthData[1] < greatestDecrease[1]) greatestDecrease = monthData;
 }
 
-// console.log(`
-// Financial Analysis
-// ----------------
-// Total Months: ${totalMonths}
-// Total: $${total}
-// Average Change: ${averageChange}
-// Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
-// Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
-// `);
+console.log(`
+Financial Analysis
+----------------
+Total Months: ${totalMonths}
+Total: $${total}
+Average Change: ${averageChange}
+Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
+Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
+`);
