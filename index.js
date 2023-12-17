@@ -93,36 +93,12 @@ var total = null;
 
 var averageChange = null;
 
+var greatestIncrease = [];
+
+var greatestDecrease = [];
+
 for (let i = 0; i < totalMonths; i++) {
   total = total + dataset[i][1];
-}
-
-// Zero is neutral number, but in the
-// technical specification is not required
-// to check for neutral numbers, that's why
-// is implemented like a positive number
-// with the first check statement.
-function isItPositiveNumber(inputNumber) {
-  if (Math.sign(inputNumber) >= 0) return true;
-  if (Math.sign(inputNumber) < 0) return false;
-}
-
-function getTotalProfitFromThePeriod(inputDataset) {
-  let profit = null;
-  for (let i = 0; i < inputDataset.length; i++) {
-    if (isItPositiveNumber(inputDataset[i][1]))
-      profit = profit + inputDataset[i][1];
-  }
-  return profit;
-}
-
-function getTotalLossesFromThePeriod(inputDataset) {
-  let profit = null;
-  for (let i = 0; i < inputDataset.length; i++) {
-    if (!isItPositiveNumber(inputDataset[i][1]))
-      profit = profit + inputDataset[i][1];
-  }
-  return profit;
 }
 
 console.log(`
