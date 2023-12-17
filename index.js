@@ -87,7 +87,7 @@ var dataset = [
   ["Feb-2017", 671099],
 ];
 
-var totalMonths;
+var totalMonths = 0;
 
 var totalProfit;
 
@@ -99,9 +99,22 @@ var greatestIncrease;
 
 var greatestDecrease;
 
-function getTotalMonthsFromPeriod(dataset, startPeriod, endPeriod) {
-  let totalMonthsForThePeriod;
-  return totalMonthsForThePeriod;
+function getTotalMonthsFromPeriod(dataset) {
+  let months = null;
+  for (let i = 0; i < dataset.length; i++) {
+    months = months + 1;
+  }
+  return months;
 }
 
-totalMonths = getTotalMonthsFromPeriod();
+totalMonths = getTotalMonthsFromPeriod(dataset);
+console.log("🚀 ~ file: index.js:111 ~ totalMonths:", totalMonths);
+
+function getTotalProfitFromThePeriod(dataset) {
+  let profit = null;
+  for (let i = 0; i < dataset.length; i++) {
+    let data = dataset[i];
+    for (let j = 0; j < data.length; j++) {}
+  }
+  return profit;
+}
