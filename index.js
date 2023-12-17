@@ -89,15 +89,13 @@ var dataset = [
 
 var totalMonths = dataset.length;
 
-var totalProfit;
+var total = null;
 
-var totalLosses;
+var averageChange = null;
 
-var averageChange;
-
-var greatestIncrease;
-
-var greatestDecrease;
+for (let i = 0; i < totalMonths; i++) {
+  total = total + dataset[i][1];
+}
 
 // Zero is neutral number, but in the
 // technical specification is not required
@@ -127,6 +125,12 @@ function getTotalLossesFromThePeriod(inputDataset) {
   return profit;
 }
 
-console.log("🚀 ~ file: index.js:141 ~ totalProfit:", totalProfit);
-totalLosses = getTotalLossesFromThePeriod(dataset);
-console.log("🚀 ~ file: index.js:143 ~ totalLosses:", totalLosses);
+console.log(`
+Financial Analysis 
+----------------
+Total Months: ${totalMonths}
+Total: $${total}
+Average Change: ${averageChange}
+Greatest Increase in Profits/Losses: Feb-2012 ($1926159)
+Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167)
+`);
