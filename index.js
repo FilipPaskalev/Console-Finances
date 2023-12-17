@@ -126,5 +126,11 @@ function getTotalProfitFromThePeriod(inputDataset) {
   return profit;
 }
 
-totalProfit = getTotalProfitFromThePeriod(dataset);
-console.log("🚀 ~ file: index.js:130 ~ totalProfit:", totalProfit);
+function getTotalLossesFromThePeriod(inputDataset) {
+  let profit = null;
+  for (let i = 0; i < inputDataset.length; i++) {
+    if (!isItPositiveNumber(inputDataset[i][1]))
+      profit = profit + inputDataset[i][1];
+  }
+  return profit;
+}
