@@ -99,35 +99,32 @@ var greatestIncrease;
 
 var greatestDecrease;
 
-function getTotalMonthsFromPeriod(dataset) {
+function getTotalMonthsFromPeriod(inputDataset) {
   let months = null;
-  for (let i = 0; i < dataset.length; i++) {
+  for (let i = 0; i < inputDataset.length; i++) {
     months = months + 1;
   }
   return months;
 }
 
-totalMonths = getTotalMonthsFromPeriod(dataset);
-console.log("🚀 ~ file: index.js:111 ~ totalMonths:", totalMonths);
-
-function getTotalProfitFromThePeriod(data) {
-  let profit = null;
-  for (let i = 0; i < data.length; i++) {
-    if (isItProfit(data[i][1])) profit = profit + data[i][1];
-  }
-  return profit;
-}
-
-function isItProfit(amount) {
+function isItPositiveNumber(inputNumber) {
   // Zero is neutral number, but in the
   // technical specification is not required
   // to check for neutral numbers, that's why
   // is implemented like a positive number
   // with the first check statement.
-  if (Math.sign(amount) >= 0) return true;
-  if (Math.sign(amount) < 0) return false;
+  if (Math.sign(inputNumber) >= 0) return true;
+  if (Math.sign(inputNumber) < 0) return false;
 }
 
-// Test the correct behavior of the function
-// var test = isItProfit(dataset[8][1]);
-// console.log("🚀 ~ file: index.js:128 ~ test:", test);
+function getTotalProfitFromThePeriod(inputDataset) {
+  let profit = null;
+  for (let i = 0; i < inputDataset.length; i++) {
+    if (isItPositiveNumber(inputDataset[i][1]))
+      profit = profit + inputDataset[i][1];
+  }
+  return profit;
+}
+
+totalProfit = getTotalProfitFromThePeriod(dataset);
+console.log("🚀 ~ file: index.js:130 ~ totalProfit:", totalProfit);
