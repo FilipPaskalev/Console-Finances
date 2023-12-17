@@ -88,25 +88,30 @@ var dataset = [
 ];
 
 var totalMonths = dataset.length;
+var total = 0;
+var averageChange;
+var greatestIncrease;
+var greatestDecrease;
 
-var total = null;
-
-var averageChange = null;
-
-var greatestIncrease = [];
-
-var greatestDecrease = [];
+var averageMonthlyChange = [];
 
 for (let i = 0; i < totalMonths; i++) {
-  total = total + dataset[i][1];
+  let monthData = dataset[i];
+  total = total + monthData[1];
+  let avgMonthlyChange = (total + monthData[1]) / (i + 1);
+  averageMonthlyChange.push([monthData[0], avgMonthlyChange]);
+  console.log(
+    "🚀 ~ file: index.js:104 ~ averageMonthlyChange:",
+    averageMonthlyChange
+  );
 }
 
-console.log(`
-Financial Analysis 
-----------------
-Total Months: ${totalMonths}
-Total: $${total}
-Average Change: ${averageChange}
-Greatest Increase in Profits/Losses: Feb-2012 ($1926159)
-Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167)
-`);
+// console.log(`
+// Financial Analysis
+// ----------------
+// Total Months: ${totalMonths}
+// Total: $${total}
+// Average Change: ${averageChange}
+// Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
+// Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
+// `);
