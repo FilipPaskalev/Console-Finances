@@ -86,3 +86,15 @@ var dataSet = [
   ["Jan-2017", 138230],
   ["Feb-2017", 671099],
 ];
+
+var totalMonths;
+
+var totalProfit;
+
+var totalLosses;
+
+var averageChange;
+
+var greatestIncrease;
+
+var greatestDecrease;
