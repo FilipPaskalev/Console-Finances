@@ -96,6 +96,7 @@ var revenue = 0;
 // The average of the changes in Profit/Losses over the entire period.
 // You will need to track what the total change in Profit/Losses are from month to month and then find the average.
 // (Total/(Number of months - 1))
+var avgChange = 0;
 
 // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestIncrease = [data[0][0], data[0][1]];
@@ -108,14 +109,20 @@ for (let i = 0; i < totalMonths; i++) {
   // save value from the data in temp var
   let monthData = data[i];
 
-  // calculating the final value of neTotal
-  revenue = revenue + monthData[1];
+  calculateRevenue(monthData[1]);
 
   // check is value need to be selected for greatestIncrease
   if (monthData[1] > greatestIncrease[1]) greatestIncrease = monthData;
 
   // check is value need to be selected for greatestDecrease
   if (monthData[1] < greatestDecrease[1]) greatestDecrease = monthData;
+
+  // calculate avg change
+}
+
+// calculating the final value of neTotal (revenue)
+function calculateRevenue(amount) {
+  return (revenue += amount);
 }
 
 // print results
@@ -124,7 +131,7 @@ Financial Analysis
 ----------------
 Total Months: ${totalMonths}
 Total: $${revenue}
-Average Change: ${averageOfChange}
+Average Change: ${avgChange}
 Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
 Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
 `);
