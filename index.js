@@ -109,7 +109,7 @@ for (let i = 0; i < totalMonths; i++) {
   // save value from the data in temp var
   let monthData = data[i];
 
-  calculateRevenue(monthData[1]);
+  calculateRevenue(data[i][1]);
 
   // check is value need to be selected for greatestIncrease
   if (monthData[1] > greatestIncrease[1]) greatestIncrease = monthData;
