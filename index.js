@@ -87,35 +87,44 @@ var data = [
   ["Feb-2017", 671099],
 ];
 
+// The total number of months included in the dataset.
 var totalMonths = data.length;
 
-var total = 0;
+// The net total amount of Profit/Losses over the entire period.
+var revenue = 0;
 
-var averageChange = 0;
-var averageMonthlyChange = [];
-
+// The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestIncrease = [data[0][0], data[0][1]];
+
+// The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestDecrease = [data[0][0], data[0][1]];
 
+// iterate over the input data
 for (let i = 0; i < totalMonths; i++) {
+  // save value from the data in temp var
   let monthData = data[i];
 
-  total = total + monthData[1];
+  // calculating the final value of neTotal
+  revenue = revenue + monthData[1];
 
-  let avgMonthlyChange = (total + monthData[1]) / (i + 1);
-  averageMonthlyChange.push([monthData[0], Math.round(avgMonthlyChange)]);
-  averageChange = averageChange + averageMonthlyChange[i][1];
-
+  // check is value need to be selected for greatestIncrease
   if (monthData[1] > greatestIncrease[1]) greatestIncrease = monthData;
+
+  // check is value need to be selected for greatestDecrease
   if (monthData[1] < greatestDecrease[1]) greatestDecrease = monthData;
 }
 
+// The average of the changes in Profit/Losses over the entire period.
+// declare and calculate averageOfChange value
+// var averageOfChange = Math.round((revenue / (totalMonths.length - 1)) * 100) / 100;
+
+// print results
 console.log(`
 Financial Analysis
 ----------------
 Total Months: ${totalMonths}
-Total: $${total}
-Average Change: ${averageChange}
+Total: $${revenue}
+Average Change: ${averageOfChange}
 Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
 Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
 `);
