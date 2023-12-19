@@ -106,16 +106,13 @@ var greatestDecrease = [data[0][0], data[0][1]];
 
 // iterate over the input data
 for (let i = 0; i < totalMonths; i++) {
-  // save value from the data in temp var
-  let monthData = data[i];
-
   calculateRevenue(data[i][1]);
 
   // check is value need to be selected for greatestIncrease
-  if (monthData[1] > greatestIncrease[1]) greatestIncrease = monthData;
+  if (data[i][1] > greatestIncrease[1]) greatestIncrease = monthData;
 
   // check is value need to be selected for greatestDecrease
-  if (monthData[1] < greatestDecrease[1]) greatestDecrease = monthData;
+  if (data[i][1] < greatestDecrease[1]) greatestDecrease = monthData;
 
   // calculate avg change
 }
