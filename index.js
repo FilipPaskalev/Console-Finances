@@ -1,4 +1,4 @@
-var data = [
+const data = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -87,49 +87,60 @@ var data = [
   ["Feb-2017", 671099],
 ];
 
-// The total number of months included in the dataset.
+// Condition: The total number of months included in the dataset.
 var totalMonths = data.length;
 
-// The net total amount of Profit/Losses over the entire period.
+// Condition: The net total amount of Profit/Losses over the entire period.
 var revenue = 0;
 
-// The average of the changes in Profit/Losses over the entire period.
-// You will need to track what the total change in Profit/Losses are from month to month and then find the average.
-// (Total/(Number of months - 1))
+// Condition: The average of the changes in Profit/Losses over the entire period. You will need to track what the total change in Profit/Losses are from month to month and then find the average. (Total/(Number of months - 1))
 var avgChange = 0;
+// declare additional var for tracking changes
+var totalChange = 0;
 
-// The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+// Condition: The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestIncrease = [data[0][0], data[0][1]];
 
-// The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
+// Condition: The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestDecrease = [data[0][0], data[0][1]];
 
 // iterate over the input data
 for (let i = 0; i < totalMonths; i++) {
-  console.log(data[i][1]);
   calculateRevenue(data[i][1]);
-  determineMaxProfits(data[i][1]);
-  determineMaxLooses(data[i][1]);
-  // calculate avg change
+  determineMaxProfits(data[i]);
+  determineMaxLooses(data[i]);
+  if (i > 0) trackAvgChange(data[i][1], data[i - 1][1]);
 }
 
-// calculating the final value of neTotal (revenue)
+// Condition: calculating the final value of neTotal (revenue)
 function calculateRevenue(amount) {
   return (revenue += amount);
 }
 
 // check is value need to be selected for greatestIncrease
-function determineMaxProfits(amount) {
+function determineMaxProfits(period, amount) {
   if (amount > greatestIncrease[1]) {
-    greatestIncrease = amount;
+    greatestIncrease[0] = period;
+    greatestIncrease[1] = amount;
   }
 }
 
 // check is value need to be selected for greatestDecrease
-function determineMaxLooses(amount) {
+function determineMaxLooses(period, amount) {
   if (amount < greatestDecrease[1]) {
-    greatestDecrease = amount;
+    greatestDecrease[0] = period;
+    greatestDecrease[1] = amount;
   }
+}
+
+// track avg change
+function trackAvgChange(currentAmount, previousAmount) {
+  totalChange = totalChange + (currentAmount - previousAmount);
+}
+
+// calculate average change in profit/losses
+function calculateAvgChange(amount, periodLength) {
+  return amount / (periodLength - 1);
 }
 
 // print results
@@ -138,7 +149,11 @@ Financial Analysis
 ----------------
 Total Months: ${totalMonths}
 Total: $${revenue}
-Average Change: ${avgChange}
-Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${greatestIncrease[1]})
-Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${greatestDecrease[1]})
+Average Change: ${calculateAvgChange(totalChange, totalMonths).toFixed(2)}
+Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${
+  greatestIncrease[1]
+})
+Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${
+  greatestDecrease[1]
+})
 `);
