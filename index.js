@@ -93,6 +93,10 @@ var totalMonths = data.length;
 // The net total amount of Profit/Losses over the entire period.
 var revenue = 0;
 
+// The average of the changes in Profit/Losses over the entire period.
+// You will need to track what the total change in Profit/Losses are from month to month and then find the average.
+// (Total/(Number of months - 1))
+
 // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
 var greatestIncrease = [data[0][0], data[0][1]];
 
@@ -113,10 +117,6 @@ for (let i = 0; i < totalMonths; i++) {
   // check is value need to be selected for greatestDecrease
   if (monthData[1] < greatestDecrease[1]) greatestDecrease = monthData;
 }
-
-// The average of the changes in Profit/Losses over the entire period.
-// declare and calculate averageOfChange value
-// var averageOfChange = Math.round((revenue / (totalMonths.length - 1)) * 100) / 100;
 
 // print results
 console.log(`
