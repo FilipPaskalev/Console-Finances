@@ -1,4 +1,4 @@
-const data = [
+var data = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -106,20 +106,30 @@ var greatestDecrease = [data[0][0], data[0][1]];
 
 // iterate over the input data
 for (let i = 0; i < totalMonths; i++) {
+  console.log(data[i][1]);
   calculateRevenue(data[i][1]);
-
-  // check is value need to be selected for greatestIncrease
-  if (data[i][1] > greatestIncrease[1]) greatestIncrease = monthData;
-
-  // check is value need to be selected for greatestDecrease
-  if (data[i][1] < greatestDecrease[1]) greatestDecrease = monthData;
-
+  determineMaxProfits(data[i][1]);
+  determineMaxLooses(data[i][1]);
   // calculate avg change
 }
 
 // calculating the final value of neTotal (revenue)
 function calculateRevenue(amount) {
   return (revenue += amount);
+}
+
+// check is value need to be selected for greatestIncrease
+function determineMaxProfits(amount) {
+  if (amount > greatestIncrease[1]) {
+    greatestIncrease = amount;
+  }
+}
+
+// check is value need to be selected for greatestDecrease
+function determineMaxLooses(amount) {
+  if (amount < greatestDecrease[1]) {
+    greatestDecrease = amount;
+  }
 }
 
 // print results
