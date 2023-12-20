@@ -109,6 +109,7 @@ function calculateRevenue(amount) {
 }
 
 // Check is value need to be selected for greatestIncrease
+// and save it in var if it is (track it)
 function trackMaxProfits(changeInBalance, index) {
   if (changeInBalance > greatestIncrease[1]) {
     greatestIncrease[0] = data[index][0];
@@ -117,6 +118,7 @@ function trackMaxProfits(changeInBalance, index) {
 }
 
 // Check is value need to be selected for greatestDecrease
+// and track it if it is
 function trackMaxLooses(changeInBalance, index) {
   if (changeInBalance < greatestDecrease[1]) {
     greatestDecrease[0] = data[index][0];
