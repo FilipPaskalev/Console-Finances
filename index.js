@@ -1,4 +1,4 @@
-const data = [
+const mockData = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -87,23 +87,58 @@ const data = [
   ["Feb-2017", 671099],
 ];
 
-// CONDITION: The total number of months included in the dataset.
-var totalMonths = data.length;
+/**
+ * Description: The total number of months included in the dataset.
+ * @date 12/20/2023 - 6:17:09 PM
+ *
+ * @type {*}
+ */
+var totalMonths = mockData.length;
 
-// Condition: The net total amount of Profit/Losses over the entire period.
+/**
+ * Description The net total amount of Profit/Losses over the entire period.
+ * @date 12/20/2023 - 6:16:43 PM
+ *
+ * @type {number}
+ */
 var revenue = 0;
 
-// CONDITION: The average of the changes in Profit/Losses over the entire period. You will need to track what the total change in Profit/Losses are from month to month and then find the average. (Total/(Number of months - 1))
-// Declare additional var for tracking changes
+/**
+ * Description: The average of the changes in Profit/Losses over
+ * the entire period. You will need to track what the total change
+ * in Profit/Losses are from month to month and then find
+ * the average. (Total/(Number of months - 1))
+ * @date 12/20/2023 - 6:17:35 PM
+ *
+ * @type {number}
+ */
 var totalChange = 0;
 
-// CONDITION: The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+/**
+ * Description: The greatest increase in Profit/Losses (date and difference
+ * in the amounts) over the entire period.
+ * @date 12/20/2023 - 6:18:31 PM
+ *
+ * @type {{}}
+ */
 var greatestIncrease = ["", 0];
 
-// CONDITION: The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
+/**
+ * Description: The greatest decrease in Profit/Losses (date and difference in
+ * the amounts) over the entire period.
+ * @date 12/20/2023 - 6:19:01 PM
+ *
+ * @type {[string, number]}
+ */
 var greatestDecrease = ["", 0];
 
-// CONDITION: calculating the final value of neTotal (revenue)
+/**
+ * Description: calculating the final value of neTotal (revenue)
+ * @date 12/20/2023 - 6:10:57 PM
+ *
+ * @param {*} amount - current amount (number) that will be add to revenue var
+ * and update it.
+ */
 function calculateRevenue(amount) {
   revenue = revenue + amount;
 }
@@ -144,36 +179,51 @@ function trackMaxLooses(changeInBalance, index) {
   }
 }
 
-// Track avg change
+/**
+ * Description: update var totalChange with given argument
+ * @date 12/20/2023 - 6:19:35 PM
+ *
+ * @param {*} changeInBalance
+ */
 function trackTotalChange(changeInBalance) {
   totalChange = totalChange + changeInBalance;
 }
 
-// Calculate average change in profit/losses
+/**
+ * Description: Calculate average change in profit/losses
+ * @date 12/20/2023 - 6:19:51 PM
+ *
+ * @param {*} amount
+ * @param {*} periodLength
+ * @returns {number}
+ */
 function calculateAvgChange(amount, periodLength) {
   return amount / (periodLength - 1);
 }
 
-// iterate over the input data
-for (let i = 1; i < totalMonths; i++) {
-  calculateRevenue(data[i][1]);
-  let changeInBalance = data[i][1] - data[i - 1][1];
-  trackTotalChange(changeInBalance);
-  trackMaxProfits(changeInBalance, i);
-  trackMaxLooses(changeInBalance, i);
-}
+function financialAnalysis(data) {
+  for (let i = 1; i < totalMonths; i++) {
+    calculateRevenue(data[i][1]);
+    let changeInBalance = data[i][1] - data[i - 1][1];
+    trackTotalChange(changeInBalance);
+    trackMaxProfits(changeInBalance, i);
+    trackMaxLooses(changeInBalance, i);
+  }
 
-// Print results
-console.log(`
+  // Print results
+  console.log(`
 Financial Analysis
 ----------------
 Total Months: ${totalMonths}
 Total: $${revenue}
 Average Change: ${calculateAvgChange(totalChange, totalMonths).toFixed(2)}
 Greatest Increase in Profits/Losses: ${greatestIncrease[0]} ($${
-  greatestIncrease[1]
-})
+    greatestIncrease[1]
+  })
 Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${
-  greatestDecrease[1]
-})
+    greatestDecrease[1]
+  })
 `);
+}
+
+financialAnalysis(mockData);
