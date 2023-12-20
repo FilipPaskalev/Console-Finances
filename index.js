@@ -117,7 +117,12 @@ function determineMaxProfits(changeInBalance, index) {
 }
 
 // Check is value need to be selected for greatestDecrease
-function determineMaxLooses(changeInBalance) {}
+function determineMaxLooses(changeInBalance, index) {
+  if (changeInBalance < greatestDecrease[1]) {
+    greatestDecrease[0] = data[index][0];
+    greatestDecrease[1] = changeInBalance;
+  }
+}
 
 // Track avg change
 function trackTotalChange(changeInBalance) {
@@ -135,6 +140,7 @@ for (let i = 1; i < totalMonths; i++) {
   let changeInBalance = data[i][1] - data[i - 1][1];
   trackTotalChange(changeInBalance);
   determineMaxProfits(changeInBalance, i);
+  determineMaxLooses(changeInBalance, i);
 }
 
 // Print results
