@@ -108,8 +108,17 @@ function calculateRevenue(amount) {
   revenue = revenue + amount;
 }
 
-// Check is value need to be selected for greatestIncrease
-// and save it in var if it is (track it)
+/**
+ * Description: Check is value need to be selected for greatestIncrease
+ * and save it in var if it is (track it)
+ * @date 12/20/2023 - 6:08:25 PM
+ *
+ * @param {*} changeInBalance - take param (number) that contains amount
+ * in change in balance
+ * @param {*} index - index in the received data arr from where
+ * will be updated value for greatestDecrease in case that
+ * conditions are matched
+ */
 function trackMaxProfits(changeInBalance, index) {
   if (changeInBalance > greatestIncrease[1]) {
     greatestIncrease[0] = data[index][0];
@@ -122,9 +131,11 @@ function trackMaxProfits(changeInBalance, index) {
  * and track it if it is
  * @date 12/20/2023 - 6:02:55 PM
  *
- * @param {*} changeInBalance - take param (number) that contains amount in change in balance
- * @param {*} index - index in the received data arr from where will be updated value for
- * greatestDecrease in case that conditions are matched
+ * @param {*} changeInBalance - take param (number) that contains
+ * amount in change in balance
+ * @param {*} index - index in the received data arr from where
+ * will be updated value for greatestDecrease in case that
+ * conditions are matched
  */
 function trackMaxLooses(changeInBalance, index) {
   if (changeInBalance < greatestDecrease[1]) {
