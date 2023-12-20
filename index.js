@@ -115,7 +115,7 @@ function determineMaxProfits(currentPeriodData, previousPeriodData) {}
 function determineMaxLooses(currentPeriodData, previousPeriodData) {}
 
 // Track avg change
-function trackChange(currentMonthAmount, previousMonthAmount) {
+function trackTotalChange(changeInBalance) {
   totalChange = totalChange + (currentMonthAmount - previousMonthAmount);
 }
 
@@ -127,7 +127,8 @@ function calculateAvgChange(amount, periodLength) {
 // iterate over the input data
 for (let i = 1; i < totalMonths; i++) {
   calculateRevenue(data[i][1]);
-  trackChange(data[i][1], data[i - 1][1]);
+  let changeInBalance = data[i][1] - data[i - 1][1];
+  trackTotalChange(changeInBalance);
 }
 
 // Print results
