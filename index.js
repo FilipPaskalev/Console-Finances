@@ -87,63 +87,49 @@ const data = [
   ["Feb-2017", 671099],
 ];
 
-// Condition: The total number of months included in the dataset.
+// CONDITION: The total number of months included in the dataset.
 var totalMonths = data.length;
 
 // Condition: The net total amount of Profit/Losses over the entire period.
 var revenue = 0;
 
-// Condition: The average of the changes in Profit/Losses over the entire period. You will need to track what the total change in Profit/Losses are from month to month and then find the average. (Total/(Number of months - 1))
-var avgChange = 0;
-// declare additional var for tracking changes
+// CONDITION: The average of the changes in Profit/Losses over the entire period. You will need to track what the total change in Profit/Losses are from month to month and then find the average. (Total/(Number of months - 1))
+// Declare additional var for tracking changes
 var totalChange = 0;
 
-// Condition: The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
-var greatestIncrease = [data[0][0], data[0][1]];
+// CONDITION: The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+var greatestIncrease = ["", 0];
 
-// Condition: The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
-var greatestDecrease = [data[0][0], data[0][1]];
+// CONDITION: The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
+var greatestDecrease = ["", 0];
 
-// iterate over the input data
-for (let i = 0; i < totalMonths; i++) {
-  calculateRevenue(data[i][1]);
-  determineMaxProfits(data[i]);
-  determineMaxLooses(data[i]);
-  if (i > 0) trackAvgChange(data[i][1], data[i - 1][1]);
-}
-
-// Condition: calculating the final value of neTotal (revenue)
+// CONDITION: calculating the final value of neTotal (revenue)
 function calculateRevenue(amount) {
-  return (revenue += amount);
+  revenue = revenue + amount;
 }
 
-// check is value need to be selected for greatestIncrease
-function determineMaxProfits(period, amount) {
-  if (amount > greatestIncrease[1]) {
-    greatestIncrease[0] = period;
-    greatestIncrease[1] = amount;
-  }
+// Check is value need to be selected for greatestIncrease
+function determineMaxProfits(currentPeriodData, previousPeriodData) {}
+
+// Check is value need to be selected for greatestDecrease
+function determineMaxLooses(currentPeriodData, previousPeriodData) {}
+
+// Track avg change
+function trackAvgChange(currentMonthAmount, previousMonthAmount) {
+  totalChange = totalChange + (currentMonthAmount - previousMonthAmount);
 }
 
-// check is value need to be selected for greatestDecrease
-function determineMaxLooses(period, amount) {
-  if (amount < greatestDecrease[1]) {
-    greatestDecrease[0] = period;
-    greatestDecrease[1] = amount;
-  }
-}
-
-// track avg change
-function trackAvgChange(currentAmount, previousAmount) {
-  totalChange = totalChange + (currentAmount - previousAmount);
-}
-
-// calculate average change in profit/losses
+// Calculate average change in profit/losses
 function calculateAvgChange(amount, periodLength) {
   return amount / (periodLength - 1);
 }
 
-// print results
+// iterate over the input data
+for (let i = 1; i < totalMonths; i++) {
+  calculateRevenue(data[i][1]);
+}
+
+// Print results
 console.log(`
 Financial Analysis
 ----------------
