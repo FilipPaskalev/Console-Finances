@@ -109,14 +109,19 @@ function calculateRevenue(amount) {
 }
 
 // Check is value need to be selected for greatestIncrease
-function determineMaxProfits(currentPeriodData, previousPeriodData) {}
+function determineMaxProfits(changeInBalance, index) {
+  if (changeInBalance > greatestIncrease[1]) {
+    greatestIncrease[0] = data[index][0];
+    greatestIncrease[1] = changeInBalance;
+  }
+}
 
 // Check is value need to be selected for greatestDecrease
-function determineMaxLooses(currentPeriodData, previousPeriodData) {}
+function determineMaxLooses(changeInBalance) {}
 
 // Track avg change
 function trackTotalChange(changeInBalance) {
-  totalChange = totalChange + (currentMonthAmount - previousMonthAmount);
+  totalChange = totalChange + changeInBalance;
 }
 
 // Calculate average change in profit/losses
@@ -129,6 +134,7 @@ for (let i = 1; i < totalMonths; i++) {
   calculateRevenue(data[i][1]);
   let changeInBalance = data[i][1] - data[i - 1][1];
   trackTotalChange(changeInBalance);
+  determineMaxProfits(changeInBalance, i);
 }
 
 // Print results
