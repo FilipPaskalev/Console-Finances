@@ -117,8 +117,15 @@ function trackMaxProfits(changeInBalance, index) {
   }
 }
 
-// Check is value need to be selected for greatestDecrease
-// and track it if it is
+/**
+ * Check is value need to be selected for greatestDecrease
+ * and track it if it is
+ * @date 12/20/2023 - 6:02:55 PM
+ *
+ * @param {*} changeInBalance - take param (number) that contains amount in change in balance
+ * @param {*} index - index in the received data arr from where will be updated value for
+ * greatestDecrease in case that conditions are matched
+ */
 function trackMaxLooses(changeInBalance, index) {
   if (changeInBalance < greatestDecrease[1]) {
     greatestDecrease[0] = data[index][0];
