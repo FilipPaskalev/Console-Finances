@@ -104,10 +104,12 @@ function financialAnalysis(data) {
 
   /**
    * Description: Variable store the net total amount of Profit/Losses over the entire period.
+   * The variable is initialized with the first value from the input data to avoid
+   * checking in the for loop, for time optimization purposes.
    * Used in: function calculateRevenue()
    * @type {number}
    */
-  var revenue = 0;
+  var revenue = data[0][1];
 
   /**
    * Description: Store the average of the changes in Profit/Losses over the entire period.
