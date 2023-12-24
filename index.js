@@ -105,7 +105,7 @@ function financialAnalysis(data) {
   /**
    * Description: Variable store the net total amount of Profit/Losses over the entire period.
    * The variable is initialized with the first value from the input data to avoid
-   * checking in the for loop, for time optimization purposes.
+   * checking in the for loop, for time performance optimization.
    * Used in: function calculateRevenue()
    * @type {number}
    */
@@ -193,10 +193,9 @@ function financialAnalysis(data) {
 
   for (let i = 1; i < totalMonths; i++) {
     calculateRevenue(data[i][1]);
-    let changeInBalance = data[i][1] - data[i - 1][1];
-    trackTotalChange(changeInBalance);
-    trackMaxProfits(changeInBalance, i);
-    trackMaxLooses(changeInBalance, i);
+    trackTotalChange(data[i][1] - data[i - 1][1]);
+    trackMaxProfits(data[i][1] - data[i - 1][1], i);
+    trackMaxLooses(data[i][1] - data[i - 1][1], i);
   }
 
   // Print results
