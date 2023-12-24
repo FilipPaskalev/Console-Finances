@@ -88,71 +88,58 @@ const mockData = [
 ];
 
 /**
- * Description: The total number of months included in the dataset.
- * @date 12/20/2023 - 6:17:09 PM
- *
- * @type {*}
+ * Description: The variable store total number of months included in the dataset.
+ * Used for: Variable is used in the Financial Analysis print
+ * Used in: function financialAnalysis() to avoid calculation of array length for
+ * each loop, which will increase time performance on the function.
+ * @type {number}
  */
 var totalMonths = mockData.length;
 
 /**
- * Description The net total amount of Profit/Losses over the entire period.
- * @date 12/20/2023 - 6:16:43 PM
- *
+ * Description: Variable store the net total amount of Profit/Losses over the entire period.
+ * Used in: function calculateRevenue()
  * @type {number}
  */
 var revenue = 0;
 
 /**
- * Description: The average of the changes in Profit/Losses over
- * the entire period. You will need to track what the total change
- * in Profit/Losses are from month to month and then find
- * the average. (Total/(Number of months - 1))
- * @date 12/20/2023 - 6:17:35 PM
- *
+ * Description: Store the average of the changes in Profit/Losses over the entire period.
+ * Used in: function trackTotalChange()
+ * Used in: function financialAnalysis()
  * @type {number}
  */
 var totalChange = 0;
 
 /**
- * Description: The greatest increase in Profit/Losses (date and difference
+ * Description: Store the greatest increase in Profit/Losses (date and difference
  * in the amounts) over the entire period.
- * @date 12/20/2023 - 6:18:31 PM
- *
- * @type {{}}
+ * @type {[string, number]}
  */
 var greatestIncrease = ["", 0];
 
 /**
- * Description: The greatest decrease in Profit/Losses (date and difference in
+ * Description: Store the greatest decrease in Profit/Losses (date and difference in
  * the amounts) over the entire period.
- * @date 12/20/2023 - 6:19:01 PM
- *
  * @type {[string, number]}
  */
 var greatestDecrease = ["", 0];
 
 /**
  * Description: calculating the final value of neTotal (revenue)
- * @date 12/20/2023 - 6:10:57 PM
- *
- * @param {*} amount - current amount (number) that will be add to revenue var
- * and update it.
+ * @param {number} amount - current amount that will be add to revenue var and update it.
  */
 function calculateRevenue(amount) {
   revenue = revenue + amount;
 }
 
 /**
- * Description: Check is value need to be selected for greatestIncrease
- * and save it in var if it is (track it)
- * @date 12/20/2023 - 6:08:25 PM
- *
- * @param {*} changeInBalance - take param (number) that contains amount
- * in change in balance
- * @param {*} index - index in the received data arr from where
- * will be updated value for greatestDecrease in case that
- * conditions are matched
+ * Description: Check is value need to be selected for var greatestIncrease and
+ * save it if it is (track it).
+ * Used in: function financialAnalysis()
+ * @param {number} changeInBalance - param that contains amount in change in balance.
+ * @param {number} index - represent index in the input data array from where will be
+ * updated value for var greatestDecrease in case that conditions are matched.
  */
 function trackMaxProfits(changeInBalance, index) {
   if (changeInBalance > greatestIncrease[1]) {
@@ -162,15 +149,12 @@ function trackMaxProfits(changeInBalance, index) {
 }
 
 /**
- * Check is value need to be selected for greatestDecrease
- * and track it if it is
- * @date 12/20/2023 - 6:02:55 PM
- *
- * @param {*} changeInBalance - take param (number) that contains
- * amount in change in balance
- * @param {*} index - index in the received data arr from where
- * will be updated value for greatestDecrease in case that
- * conditions are matched
+ * Description: Check is value need to be selected for greatestDecrease and track it if it is.
+ * Used in: function financialAnalysis()
+ * @param {number} changeInBalance - take param (number) that contains amount in
+ * change in balance.
+ * @param {number} index - represent index in the received data arr from where will be
+ * updated value for greatestDecrease in case that conditions are matched.
  */
 function trackMaxLooses(changeInBalance, index) {
   if (changeInBalance < greatestDecrease[1]) {
@@ -180,27 +164,30 @@ function trackMaxLooses(changeInBalance, index) {
 }
 
 /**
- * Description: update var totalChange with given argument
- * @date 12/20/2023 - 6:19:35 PM
- *
- * @param {*} changeInBalance
+ * Description: Update var totalChange with given argument.
+ * Used in:function financialAnalysis()
+ * @param {number} changeInBalance - the value to be added.
  */
 function trackTotalChange(changeInBalance) {
   totalChange = totalChange + changeInBalance;
 }
 
 /**
- * Description: Calculate average change in profit/losses
- * @date 12/20/2023 - 6:19:51 PM
- *
- * @param {*} amount
- * @param {*} periodLength
- * @returns {number}
+ * Description: Calculate average change in Profit/losses
+ * Used in: function financialAnalysis()
+ * @param {number} amount - amount need for calculation of AVG change
+ * @param {number} periodLength - length of the period
+ * @returns {number} - AVG change amount
  */
 function calculateAvgChange(amount, periodLength) {
   return amount / (periodLength - 1);
 }
 
+/**
+ * Description: Main function that contains logic for financial calculation.
+ * @param {[[string,number],[string, number]]} data - input array data that should
+ * contains MIN two array inside. Inside arrays should be with structure [string, number]
+ */
 function financialAnalysis(data) {
   for (let i = 1; i < totalMonths; i++) {
     calculateRevenue(data[i][1]);
