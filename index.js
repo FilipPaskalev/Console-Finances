@@ -1,4 +1,4 @@
-const mockData = [
+const dataset = [
   ["Jan-2010", 867884],
   ["Feb-2010", 984655],
   ["Mar-2010", 322013],
@@ -100,7 +100,7 @@ function financialAnalysis(data) {
    * each loop, which will increase time performance on the function.
    * @type {number}
    */
-  var totalMonths = mockData.length;
+  var totalMonths = data.length;
 
   /**
    * Description: Variable store the net total amount of Profit/Losses over the entire period.
@@ -214,4 +214,4 @@ Greatest Decrease in Profits/Losses: ${greatestDecrease[0]} ($${
 `);
 }
 
-financialAnalysis(mockData);
+financialAnalysis(dataset);
